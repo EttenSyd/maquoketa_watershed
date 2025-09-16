@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,41 +5,45 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Maquoketa Water Quality Dashboard</title>
   <style>
-    /* Page look */
     html, body { height: 100%; }
     body {
-      background: #E8EDDA;           /* your requested background color */
+      background: #E8EDDA;           /* background color */
       margin: 0;
       font-family: Arial, Helvetica, sans-serif;
       color: #222;
     }
 
-    /* Center the content and limit width */
     .wrap {
-      max-width: 1100px;             /* adjust if you want wider/narrower */
-      margin: 0 auto;                /* centers horizontally */
+      max-width: 1100px;
+      margin: 0 auto;
       padding: 20px;
+      text-align: center;           /* center all text by default */
     }
 
-    h3 { text-align: center; margin-top: 0; }
+    h3 { margin-top: 0; }
 
-    /* Center the viz block and make it responsive */
     .dash-center {
       display: block;
-      margin: 20px auto;             /* centers the dashboard block */
+      margin: 20px auto;
       width: 100%;
     }
-    /* Let the Tableau object fill the container width */
+
     .tableauViz { width: 100% !important; }
+
+    footer {
+      margin-top: 20px;
+      font-size: 0.8rem;
+      color: #444;
+    }
   </style>
 </head>
 <body>
   <div class="wrap">
-    <h3>This website hosts a dashboard to communicate water quality results from the Maquoketa Watershed.</h3>
+    <h3>
+      This website hosts a dashboard to communicate water quality results from the Maquoketa Watershed.
+    </h3>
 
-    <!-- Dashboard container (centered) -->
     <div class="dash-center">
-      <!-- Your Tableau embed -->
       <div id="viz1758040875692" class="tableauPlaceholder" style="position: relative;">
         <noscript>
           <a href="#">
@@ -68,15 +71,11 @@
     </div>
 
     <script>
-      // Required to load the Tableau viz
       var divElement = document.getElementById('viz1758040875692');
       var vizElement = divElement.getElementsByTagName('object')[0];
-
-      // Simple sizing: full width, set a reasonable height
       function sizeViz() {
         var w = divElement.offsetWidth;
         vizElement.style.width = '100%';
-        // ~5:4 aspect ratio; tweak if you want taller/shorter
         vizElement.style.height = Math.round(Math.min(w, 1100) * 0.8) + 'px';
       }
       sizeViz();
@@ -87,10 +86,15 @@
       vizElement.parentNode.insertBefore(scriptElement, vizElement);
     </script>
 
-    <p style="text-align:center;margin-top:24px;">
+    <p>
       This dashboard was created by Sydney Etten
       (<a href="mailto:ettens@iastate.edu">ettens@iastate.edu</a>)
     </p>
+
+    <footer>
+      Click the home button on the map to recenter the results.
+    </footer>
   </div>
 </body>
 </html>
+
