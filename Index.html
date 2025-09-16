@@ -3,55 +3,49 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Maquoketa Water Quality Dashboard</title>
+  <title>Water Quality Dashboard</title>
   <style>
-    body{font-family:Arial,Helvetica,sans-serif;margin:0;line-height:1.5}
-    .wrap{max-width:1000px;margin:0 auto;padding:16px}
-    h1{margin:0 0 8px;font-size:1.5rem}
-    .hint{background:#f6f6f6;border:1px solid #e5e5e5;padding:10px;border-radius:6px;margin:8px 0 16px}
-    footer{margin-top:20px;padding-top:12px;border-top:1px solid #ddd;color:#333;font-size:0.95rem}
-    a{color:#0a7}
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      margin: 20px;
+      line-height: 1.5;
+    }
+    h1 {
+      margin-bottom: 10px;
+    }
+    .instructions {
+      background: #f9f9f9;
+      border: 1px solid #ddd;
+      padding: 10px;
+      border-radius: 6px;
+      margin-bottom: 20px;
+    }
+    footer {
+      margin-top: 30px;
+      font-size: 0.9rem;
+      color: #555;
+      border-top: 1px solid #ddd;
+      padding-top: 10px;
+    }
+    a { color: #0077aa; }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <h1>Maquoketa Water Quality Dashboard</h1>
-    <p class="hint">How to use: Use the filters on the right to choose a <strong>Location</strong> or <strong>Date</strong>. Hover for details and click marks to select. On the map, click the <strong>Home</strong> button to return to the default center view.</p>
 
-    <!-- Tableau Embed (your provided code) -->
-    <div class='tableauPlaceholder' id='viz1758040875692' style='position: relative'>
-      <noscript><a href='#'><img alt='Dashboard 1 ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Ma&#47;Maquoketa_Draft&#47;Dashboard1&#47;1_rss.png' style='border: none' /></a></noscript>
-      <object class='tableauViz'  style='display:none;'>
-        <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
-        <param name='embed_code_version' value='3' />
-        <param name='site_root' value='' />
-        <param name='name' value='Maquoketa_Draft&#47;Dashboard1' />
-        <param name='tabs' value='no' />
-        <param name='toolbar' value='yes' />
-        <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Ma&#47;Maquoketa_Draft&#47;Dashboard1&#47;1.png' />
-        <param name='animate_transition' value='yes' />
-        <param name='display_static_image' value='yes' />
-        <param name='display_spinner' value='yes' />
-        <param name='display_overlay' value='yes' />
-        <param name='display_count' value='yes' />
-        <param name='language' value='en-US' />
-      </object>
-    </div>
-    <script type='text/javascript'>
-      var divElement = document.getElementById('viz1758040875692');
-      var vizElement = divElement.getElementsByTagName('object')[0];
-      // Keep Tableau's default sizing logic from your snippet
-      if ( divElement.offsetWidth > 800 ) { vizElement.style.width='1000px';vizElement.style.height='827px';}
-      else if ( divElement.offsetWidth > 500 ) { vizElement.style.width='1000px';vizElement.style.height='827px';}
-      else { vizElement.style.width='100%';vizElement.style.height='877px';}
-      var scriptElement = document.createElement('script');
-      scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
-      vizElement.parentNode.insertBefore(scriptElement, vizElement);
-    </script>
+  <h1>Maquoketa Water Quality Dashboard</h1>
 
-    <footer>
-      Created by <strong>Sydney Etten</strong> · <a href="ettens@iastate.edu">ettens@iastate.edu</a>
-    </footer>
-  </div>
+  <p class="instructions">
+    How to use: Use the filters on the right to select a <strong>Location</strong> or <strong>Date</strong>.  
+    Hover over marks to see details, click to select, and click the <strong>Home</strong> button on the map to return to center.
+  </p>
+
+  <!-- Paste your Tableau embed code below -->
+<div class='tableauPlaceholder' id='viz1758040875692' style='position: relative'><noscript><a href='#'><img alt='Dashboard 1 ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Ma&#47;Maquoketa_Draft&#47;Dashboard1&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='Maquoketa_Draft&#47;Dashboard1' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Ma&#47;Maquoketa_Draft&#47;Dashboard1&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1758040875692');                    var vizElement = divElement.getElementsByTagName('object')[0];                    if ( divElement.offsetWidth > 800 ) { vizElement.style.width='1000px';vizElement.style.height='827px';} else if ( divElement.offsetWidth > 500 ) { vizElement.style.width='1000px';vizElement.style.height='827px';} else { vizElement.style.width='100%';vizElement.style.height='877px';}                     var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
+
+  <footer>
+    Created by <strong>Sydney Etten</strong> · 
+    <a href="mailto:your.email@iastate.edu">your.email@iastate.edu</a>
+  </footer>
+
 </body>
 </html>
