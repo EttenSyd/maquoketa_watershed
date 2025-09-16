@@ -1,10 +1,186 @@
-<!doctype html> #Author Sydney M Etten
-<html>
-  <head>
-    <title>Maquoketa Watershed Dashboard</title>
-  </head>
-  <body>
-    <h1> Maquoketa Watershed
-       <p>This is current as of September 2025</p>
-  </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Water Quality Dashboard – Iowa Class A Waters</title>
+  <meta name="description" content="Interactive Tableau dashboard on E. coli and nitrate levels in Iowa Class A recreational waters." />
+  <link rel="preconnect" href="https://public.tableau.com" crossorigin>
+  <script defer src="https://public.tableau.com/javascripts/api/tableau-2.min.js"></script>
+  <style>
+    :root{
+      --bg:#0f172a;       /* slate-900 */
+      --panel:#111827;    /* gray-900 */
+      --ink:#e5e7eb;      /* gray-200 */
+      --ink-dim:#9ca3af;  /* gray-400 */
+      --accent:#22d3ee;   /* cyan-400 */
+      --accent-2:#a78bfa; /* violet-400 */
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji"}
+    a{color:var(--accent)}
+    .wrap{max-width:1100px;margin:0 auto;padding:24px}
+    header{display:flex;gap:16px;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap}
+    .title{font-weight:700;font-size:clamp(1.25rem,2.2vw,1.75rem)}
+    .subtitle{color:var(--ink-dim);font-size:0.95rem}
+    .pill{border:1px solid #213047;color:var(--ink);background:#0b1220;padding:6px 10px;border-radius:999px;display:inline-flex;gap:8px;align-items:center}
+    .grid{display:grid;grid-template-columns:1.3fr 1fr;gap:18px}
+    @media (max-width: 960px){.grid{grid-template-columns:1fr}}
+    .panel{background:var(--panel);border:1px solid #222;box-shadow:0 0 0 1px #000 inset;border-radius:16px}
+    .panel h2{font-size:1.05rem;margin:0 0 8px}
+    .p-pad{padding:16px}
+    .kbd{background:#0b1220;border:1px solid #22304a;border-bottom-color:#1a2438;border-radius:8px;padding:2px 6px;font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-size:0.85em}
+    .btn{cursor:pointer;border:1px solid #2a3b57;background:#0b1220;color:var(--ink);padding:10px 14px;border-radius:12px}
+    .btn:hover{background:#0d1526}
+    .btn-row{display:flex;flex-wrap:wrap;gap:10px}
+    .legend{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .legend .card{border:1px solid #27324a;background:#0b1220;border-radius:12px;padding:12px}
+    details{border:1px solid #26334f;background:#0b1220;border-radius:12px}
+    details+details{margin-top:12px}
+    summary{cursor:pointer;padding:12px 14px;font-weight:600;color:var(--ink)}
+    details .content{padding:0 14px 14px;color:var(--ink-dim)}
+    .viz-shell{position:relative;aspect-ratio:16/10;width:100%;border-radius:16px;overflow:hidden;border:1px solid #22304a;background: #0b1220;}
+    .viz{position:absolute;inset:0}
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    footer{color:var(--ink-dim);font-size:0.9rem;margin-top:18px}
+  </style>
+</head>
+<body>
+  <a class="sr-only" href="#main">Skip to content</a>
+  <div class="wrap">
+    <header>
+      <div>
+        <div class="title">Water Quality Dashboard</div>
+        <div class="subtitle">Iowa Class A recreational waters – interactive map and trends for E. coli and nitrate</div>
+      </div>
+      <div class="pill" aria-label="Data status">
+        <span>Updated:</span>
+        <span id="lastUpdated">Sep 2025</span>
+      </div>
+    </header>
+
+    <main id="main" class="grid" aria-live="polite">
+      <!-- LEFT: Tableau Embed -->
+      <section class="panel p-pad" aria-label="Interactive dashboard">
+        <h2 style="display:flex;align-items:center;gap:8px">Explore the Dashboard</h2>
+        <div class="viz-shell" aria-describedby="howto">
+          <div id="tableauViz" class="viz" role="application" aria-label="Tableau interactive visualization"></div>
+        </div>
+        <div class="btn-row" style="margin-top:12px">
+          <button class="btn" id="btnReset" title="Revert all filters">Reset filters</button>
+          <button class="btn" id="btnDownload" title="Open Tableau download options">Download</button>
+        </div>
+        <p id="howto" class="subtitle" style="margin-top:10px">
+          Tip: Use the filters on the right of the viz to choose a <span class="kbd">Location</span>, <span class="kbd">Date</span>, or toggle water quality layers. Hover to see details, click marks to select, and use the toolbar’s back/undo arrows to step through actions.
+        </p>
+        <noscript>
+          This page requires JavaScript to load the Tableau visualization. You can open it directly here:
+          <a href="YOUR_TABLEAU_PUBLIC_URL" rel="noopener">View on Tableau Public</a>.
+        </noscript>
+      </section>
+
+      <!-- RIGHT: How to Use + Standards -->
+      <aside class="panel p-pad" aria-label="How to use and standards">
+        <h2>How to use this page</h2>
+        <ul>
+          <li>Pick a site or area using the filters in the dashboard.</li>
+          <li>Use the <span class="kbd">Date</span> filter to view specific months or monitoring periods.</li>
+          <li>Click a mark on the map or chart to highlight related data; click again to clear.</li>
+          <li>Use the <span class="kbd">Reset filters</span> button (above) to go back to the default view.</li>
+        </ul>
+
+        <div class="legend" style="margin-top:10px">
+          <div class="card">
+            <strong>E. coli – One-time sample standard</strong>
+            <p class="subtitle">
+              In Iowa, <em>Class A waters</em> are used for recreation like swimming, wading, canoeing, and fishing. Because people may swallow water or come into contact with it, the state sets safety standards for bacteria levels. A <em>one-time sample standard</em> means that even if water usually tests okay, a single result can still be unsafe at that moment. If one sample shows more than <strong>235 colonies of E. coli per 100 mL</strong>, the water is considered unsafe for recreation at that time—this helps catch sudden spikes after, for example, heavy rain.
+            </p>
+          </div>
+          <div class="card">
+            <strong>Nitrate – Simple categories</strong>
+            <p class="subtitle">
+              Nitrates matter for health, especially for infants. To make results easy to read, we group nitrate as: <strong>Safe</strong> (&lt; 5 mg/L), <strong>Cautious</strong> (5–9.9 mg/L), and <strong>Unsafe</strong> (≥ 10 mg/L). The <em>unsafe</em> threshold aligns with the U.S. EPA drinking water standard; levels above this can pose health risks such as blue baby syndrome.
+            </p>
+          </div>
+        </div>
+
+        <details style="margin-top:12px">
+          <summary>About “Class A waters”</summary>
+          <div class="content">
+            In Iowa, “Class A waters” are designated for recreation (e.g., swimming, wading, canoeing, fishing). Because people often get water on their skin and may swallow small amounts, Iowa and the U.S. EPA use standards like the 30‑day geometric mean and single‑sample maximum to protect public health.
+          </div>
+        </details>
+
+        <details>
+          <summary>Notes & sources</summary>
+          <div class="content">
+            Thresholds summarized from Iowa DNR/EPA guidance. Your local advisories may vary due to conditions like rainfall, runoff, or recent sampling. Always check the latest posted notices for your recreation site.
+          </div>
+        </details>
+      </aside>
+    </main>
+
+    <footer>
+      Built for public transparency and education. If you use a screen reader, the visualization region is labeled as an application and supports keyboard navigation via Tableau’s toolbar.
+    </footer>
+  </div>
+
+  <script>
+    // ======== Replace with your public viz URL =========
+    // Example: const VIZ_URL = "https://public.tableau.com/views/YourWorkbook/YourSheet?:showVizHome=no&:embed=y";
+    const VIZ_URL = "YOUR_TABLEAU_PUBLIC_URL";
+
+    // Optional: initial options
+    const options = {
+      hideTabs: true,
+      hideToolbar: false,
+      device: 'desktop', // or 'phone'/'tablet' if you publish device layouts
+      // You can preset filters here, e.g.:
+      // filters: { Site: 'Maquoketa', Month: '2025-08' }
+    };
+
+    let viz;
+
+    function initViz(){
+      const container = document.getElementById('tableauViz');
+      if(!container || !window.tableau || !VIZ_URL || VIZ_URL.includes('YOUR_TABLEAU_PUBLIC_URL')){
+        console.warn('Set VIZ_URL to your Tableau Public share link.');
+        return;
+      }
+      viz = new tableau.Viz(container, VIZ_URL, options);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      initViz();
+
+      const btnReset = document.getElementById('btnReset');
+      btnReset?.addEventListener('click', async () => {
+        try{
+          if(!viz) return;
+          const workbook = viz.getWorkbook();
+          const activeSheet = workbook.getActiveSheet();
+          // Revert all on the active sheet (works for dashboards/worksheets)
+          await activeSheet.revertAllAsync();
+        }catch(err){ console.error(err); }
+      });
+
+      const btnDownload = document.getElementById('btnDownload');
+      btnDownload?.addEventListener('click', async () => {
+        try{
+          if(!viz) return;
+          viz.showShareDialog(); // or viz.showExportPDFDialog(); viz.showDownloadDialog();
+        }catch(err){ console.error(err); }
+      });
+
+      // Make the viz responsive to width changes by refreshing layout if needed
+      let resizeTimeout;
+      window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+          if(viz){ viz.refreshDataAsync?.(); }
+        }, 200);
+      });
+    });
+  </script>
+</body>
 </html>
