@@ -13,7 +13,7 @@
       color: #222;
     }
     .wrap {
-      max-width: 1100px;
+      max-width: 1600px;         /* wider so vizzes can be large */
       margin: 0 auto;
       padding: 20px;
       text-align: center;
@@ -28,14 +28,14 @@
     /* Two-column responsive layout */
     .row {
       display: flex;
-      gap: 24px;
+      gap: 32px;
       flex-wrap: wrap;
-      align-items: stretch;
       justify-content: center;
+      align-items: stretch;
     }
     .viz {
-      flex: 1 1 520px;   /* try to keep each ≥ ~520px on desktop */
-      min-width: 320px;  /* avoid getting too tiny */
+      flex: 1 1 700px;           /* aim ~700px width per viz on desktop */
+      min-width: 520px;          /* stack below this width */
     }
 
     /* Make Tableau objects fill their containers */
@@ -52,11 +52,6 @@
       font-size: 0.8rem;
       color: #444;
     }
-
-    /* Stack on smaller screens */
-    @media (max-width: 1100px) {
-      .viz { flex: 1 1 100%; }
-    }
   </style>
 </head>
 <body>
@@ -68,58 +63,48 @@
     </p>
 
     <div class="row">
-      <!-- LEFT: Nitrate / E. coli -->
+      <!-- LEFT: Turbidity / DRP -->
       <div class="viz">
-        <div class="tableauPlaceholder" id="viz1758634494077">
-          <noscript>
-            <a href="#">
-              <img alt="Nitrate/EColi"
-                   src="https://public.tableau.com/static/images/Ni/NitrateEcoli/NitrateEColi/1_rss.png"
-                   style="border: none" />
-            </a>
-          </noscript>
-          <object class="tableauViz" style="display:none;">
-            <param name="host_url" value="https%3A%2F%2Fpublic.tableau.com%2F" />
-            <param name="embed_code_version" value="3" />
-            <param name="site_root" value="" />
-            <param name="name" value="NitrateEcoli/NitrateEColi" />
-            <param name="tabs" value="no" />
-            <param name="toolbar" value="yes" />
-            <param name="static_image" value="https://public.tableau.com/static/images/Ni/NitrateEcoli/NitrateEColi/1.png" />
-            <param name="animate_transition" value="yes" />
-            <param name="display_static_image" value="yes" />
-            <param name="display_spinner" value="yes" />
-            <param name="display_overlay" value="yes" />
-            <param name="display_count" value="yes" />
-            <param name="language" value="en-US" />
+        <div class='tableauPlaceholder' id='viz1758637024424' style='position: relative'>
+          <noscript><a href='#'><img alt='Turbidity/DRP'
+            src='https://public.tableau.com/static/images/Tu/TurbidityDRP/TurbidityDRP/1_rss.png' style='border: none' /></a></noscript>
+          <object class='tableauViz' style='display:none;'>
+            <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
+            <param name='embed_code_version' value='3' />
+            <param name='site_root' value='' />
+            <param name='name' value='TurbidityDRP/TurbidityDRP' />
+            <param name='tabs' value='no' />
+            <param name='toolbar' value='yes' />
+            <param name='static_image' value='https://public.tableau.com/static/images/Tu/TurbidityDRP/TurbidityDRP/1.png' />
+            <param name='animate_transition' value='yes' />
+            <param name='display_static_image' value='yes' />
+            <param name='display_spinner' value='yes' />
+            <param name='display_overlay' value='yes' />
+            <param name='display_count' value='yes' />
+            <param name='language' value='en-US' />
           </object>
         </div>
       </div>
 
-      <!-- RIGHT: Turbidity / DRP -->
+      <!-- RIGHT: Nitrate / E. coli -->
       <div class="viz">
-        <div class="tableauPlaceholder" id="viz1758634551551">
-          <noscript>
-            <a href="#">
-              <img alt="Turbidity/DRP"
-                   src="https://public.tableau.com/static/images/Tu/TurbidityDRP/TurbidityDRP/1_rss.png"
-                   style="border: none" />
-            </a>
-          </noscript>
-          <object class="tableauViz" style="display:none;">
-            <param name="host_url" value="https%3A%2F%2Fpublic.tableau.com%2F" />
-            <param name="embed_code_version" value="3" />
-            <param name="site_root" value="" />
-            <param name="name" value="TurbidityDRP/TurbidityDRP" />
-            <param name="tabs" value="no" />
-            <param name="toolbar" value="yes" />
-            <param name="static_image" value="https://public.tableau.com/static/images/Tu/TurbidityDRP/TurbidityDRP/1.png" />
-            <param name="animate_transition" value="yes" />
-            <param name="display_static_image" value="yes" />
-            <param name="display_spinner" value="yes" />
-            <param name="display_overlay" value="yes" />
-            <param name="display_count" value="yes" />
-            <param name="language" value="en-US" />
+        <div class='tableauPlaceholder' id='viz1758637057544' style='position: relative'>
+          <noscript><a href='#'><img alt='Nitrate/EColi'
+            src='https://public.tableau.com/static/images/Ni/NitrateEcoli/NitrateEColi/1_rss.png' style='border: none' /></a></noscript>
+          <object class='tableauViz' style='display:none;'>
+            <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
+            <param name='embed_code_version' value='3' />
+            <param name='site_root' value='' />
+            <param name='name' value='NitrateEcoli/NitrateEColi' />
+            <param name='tabs' value='no' />
+            <param name='toolbar' value='yes' />
+            <param name='static_image' value='https://public.tableau.com/static/images/Ni/NitrateEcoli/NitrateEColi/1.png' />
+            <param name='animate_transition' value='yes' />
+            <param name='display_static_image' value='yes' />
+            <param name='display_spinner' value='yes' />
+            <param name='display_overlay' value='yes' />
+            <param name='display_count' value='yes' />
+            <param name='language' value='en-US' />
           </object>
         </div>
       </div>
@@ -136,41 +121,26 @@
     </footer>
   </div>
 
-  <!-- Per-viz init scripts (keeps Tableau's recommended behavior) -->
-  <script type="text/javascript">
-    // Nitrate/E. coli: set size based on container width (maintain ~0.827 aspect)
-    (function () {
-      var div = document.getElementById('viz1758634494077');
+  <!-- Load Tableau API once -->
+  <script src="https://public.tableau.com/javascripts/api/viz_v1.js"></script>
+  <script>
+    // Size both vizzes generously; keep them tall even when narrow
+    function sizeViz(divId, aspect, minH) {
+      var div = document.getElementById(divId);
+      if (!div) return;
       var obj = div.getElementsByTagName('object')[0];
-      function size() {
+      function apply() {
         var w = div.offsetWidth;
-        obj.style.width = '100%';
-        obj.style.height = Math.round(w * 0.827) + 'px';
+        obj.style.width  = '100%';
+        obj.style.height = Math.max(minH, Math.round(w * aspect)) + 'px';
       }
-      size();
-      window.addEventListener('resize', size);
-      var s = document.createElement('script');
-      s.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
-      obj.parentNode.insertBefore(s, obj);
-    })();
-  </script>
+      apply();
+      window.addEventListener('resize', apply);
+    }
 
-  <script type="text/javascript">
-    // Turbidity/DRP: same responsive sizing
-    (function () {
-      var div = document.getElementById('viz1758634551551');
-      var obj = div.getElementsByTagName('object')[0];
-      function size() {
-        var w = div.offsetWidth;
-        obj.style.width = '100%';
-        obj.style.height = Math.round(w * 0.827) + 'px';
-      }
-      size();
-      window.addEventListener('resize', size);
-      var s = document.createElement('script');
-      s.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
-      obj.parentNode.insertBefore(s, obj);
-    })();
+    // ~1000x827 aspect; at least 520px tall
+    sizeViz('viz1758637024424', 0.827, 520); // Turbidity/DRP
+    sizeViz('viz1758637057544', 0.827, 520); // Nitrate/E. coli
   </script>
 </body>
 </html>
