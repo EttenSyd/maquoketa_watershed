@@ -42,4 +42,91 @@
     <h1>This website hosts a dashboard to communicate water quality results from the Maquoketa Watershed.</h1>
     <p class="instructions">
       Move your mouse over the map to zoom in or out and see different areas. You can click on points or locations to learn more.
-      Use the filters or buttons around the map to change what information is displayed. Click the home button on
+      Use the filters or buttons around the map to change what information is displayed. Click the home button on the map to recenter the results.
+    </p>
+
+    <!-- DASHBOARD 1: Nitrate / E. coli -->
+    <div class="dash-center">
+      <div class="tableauPlaceholder" id="viz_nitrate_ecoli" style="position: relative;">
+        <noscript>
+          <a href="#">
+            <img alt="Nitrate/EColi"
+                 src="https://public.tableau.com/static/images/Ni/NitrateEcoli/NitrateEColi/1_rss.png"
+                 style="border: none" />
+          </a>
+        </noscript>
+        <object class="tableauViz" style="display:none;">
+          <param name="host_url" value="https%3A%2F%2Fpublic.tableau.com%2F" />
+          <param name="embed_code_version" value="3" />
+          <param name="site_root" value="" />
+          <param name="name" value="NitrateEcoli/NitrateEColi" />
+          <param name="tabs" value="no" />
+          <param name="toolbar" value="yes" />
+          <param name="static_image" value="https://public.tableau.com/static/images/Ni/NitrateEcoli/NitrateEColi/1.png" />
+          <param name="animate_transition" value="yes" />
+          <param name="display_static_image" value="yes" />
+          <param name="display_spinner" value="yes" />
+          <param name="display_overlay" value="yes" />
+          <param name="display_count" value="yes" />
+          <param name="language" value="en-US" />
+        </object>
+      </div>
+    </div>
+
+    <!-- DASHBOARD 2: Turbidity / DRP -->
+    <div class="dash-center">
+      <div class="tableauPlaceholder" id="viz_turbidity_drp" style="position: relative;">
+        <noscript>
+          <a href="#">
+            <img alt="Turbidity/DRP"
+                 src="https://public.tableau.com/static/images/Tu/TurbidityDRP/TurbidityDRP/1_rss.png"
+                 style="border: none" />
+          </a>
+        </noscript>
+        <object class="tableauViz" style="display:none;">
+          <param name="host_url" value="https%3A%2F%2Fpublic.tableau.com%2F" />
+          <param name="embed_code_version" value="3" />
+          <param name="site_root" value="" />
+          <param name="name" value="TurbidityDRP/TurbidityDRP" />
+          <param name="tabs" value="no" />
+          <param name="toolbar" value="yes" />
+          <param name="static_image" value="https://public.tableau.com/static/images/Tu/TurbidityDRP/TurbidityDRP/1.png" />
+          <param name="animate_transition" value="yes" />
+          <param name="display_static_image" value="yes" />
+          <param name="display_spinner" value="yes" />
+          <param name="display_overlay" value="yes" />
+          <param name="display_count" value="yes" />
+          <param name="language" value="en-US" />
+        </object>
+      </div>
+    </div>
+
+    <p>
+      This dashboard was created by Sydney Etten
+      (<a href="mailto:ettens@iastate.edu">ettens@iastate.edu</a>)
+    </p>
+
+    <footer>
+      This dashboard was created with data collected and provided to the map author by the Maquoketa Watershed team.
+      This dashboard was last updated in September of 2025.
+    </footer>
+  </div>
+
+  <!-- Load Tableau API once -->
+  <script src="https://public.tableau.com/javascripts/api/viz_v1.js"></script>
+  <script>
+    function mountViz(divId) {
+      var div = document.getElementById(divId);
+      var obj = div.getElementsByTagName('object')[0];
+      function size() {
+        var w = div.offsetWidth;
+        obj.style.width = '100%';
+        obj.style.height = Math.round(Math.min(w, 1100) * 0.82) + 'px';
+      }
+      size();
+      window.addEventListener('resize', size);
+    }
+    ['viz_nitrate_ecoli', 'viz_turbidity_drp'].forEach(mountViz);
+  </script>
+</body>
+</html>
