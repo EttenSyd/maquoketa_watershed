@@ -7,29 +7,29 @@
   <style>
     html, body { height: 100%; }
     body {
-      background: #E8EDDA;           /* background color */
+      background: #E8EDDA; /* background color */
       margin: 0;
       font-family: Arial, Helvetica, sans-serif;
       color: #222;
     }
-
     .wrap {
       max-width: 1100px;
       margin: 0 auto;
       padding: 20px;
-      text-align: center;           /* center all text by default */
+      text-align: center; /* center all text by default */
     }
-
-    h3 { margin-top: 0; }
-
+    h1 { margin: 0 0 10px; }
+    .instructions {
+      margin: 0 0 20px;
+      font-size: 0.95rem;
+      line-height: 1.35;
+    }
     .dash-center {
       display: block;
-      margin: 20px auto;
+      margin: 20px auto 30px;
       width: 100%;
     }
-
     .tableauViz { width: 100% !important; }
-
     footer {
       margin-top: 20px;
       font-size: 0.8rem;
@@ -39,67 +39,7 @@
 </head>
 <body>
   <div class="wrap">
-    <h1>
-      This website hosts a dashboard to communicate water quality results from the Maquoketa Watershed.
-    </h1>
-  </h5>
-    Move your mouse over the map to zoom in or out and see different areas. You can click on points or locations to learn more. 
-    Use the filters or buttons around the map to change what information is displayed. Click the home button on the map to recenter the results.
-  </h5>
-
-    <div class="dash-center">
-      <div id="viz1758040875692" class="tableauPlaceholder" style="position: relative;">
-        <noscript>
-          <a href="#">
-            <img alt="Dashboard 1"
-                 src="https://public.tableau.com/static/images/Ma/Maquoketa_Draft/Dashboard1/1_rss.png"
-                 style="border: none" />
-          </a>
-        </noscript>
-        <object class="tableauViz" style="display: none;">
-          <param name="host_url" value="https%3A%2F%2Fpublic.tableau.com%2F" />
-          <param name="embed_code_version" value="3" />
-          <param name="site_root" value="" />
-          <param name="name" value="Maquoketa_Draft/Dashboard1" />
-          <param name="tabs" value="no" />
-          <param name="toolbar" value="yes" />
-          <param name="static_image" value="https://public.tableau.com/static/images/Ma/Maquoketa_Draft/Dashboard1/1.png" />
-          <param name="animate_transition" value="yes" />
-          <param name="display_static_image" value="yes" />
-          <param name="display_spinner" value="yes" />
-          <param name="display_overlay" value="yes" />
-          <param name="display_count" value="yes" />
-          <param name="language" value="en-US" />
-        </object>
-      </div>
-    </div>
-
-    <script>
-      var divElement = document.getElementById('viz1758040875692');
-      var vizElement = divElement.getElementsByTagName('object')[0];
-      function sizeViz() {
-        var w = divElement.offsetWidth;
-        vizElement.style.width = '100%';
-        vizElement.style.height = Math.round(Math.min(w, 1100) * 0.8) + 'px';
-      }
-      sizeViz();
-      window.addEventListener('resize', sizeViz);
-
-      var scriptElement = document.createElement('script');
-      scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
-      vizElement.parentNode.insertBefore(scriptElement, vizElement);
-    </script>
-
-    <p>
-      This dashboard was created by Sydney Etten
-      (<a href="mailto:ettens@iastate.edu">ettens@iastate.edu</a>)
-    </p>
-
-    <footer>
-      This dashboard was created with data collected and provided to the map author by the Maquoketa Watershed team. This dashboard was last updated in September of 2025.
-
-    </footer>
-  </div>
-</body>
-</html>
-
+    <h1>This website hosts a dashboard to communicate water quality results from the Maquoketa Watershed.</h1>
+    <p class="instructions">
+      Move your mouse over the map to zoom in or out and see different areas. You can click on points or locations to learn more.
+      Use the filters or buttons around the map to change what information is displayed. Click the home button on
