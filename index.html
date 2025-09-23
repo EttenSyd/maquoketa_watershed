@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Maquoketa Water Quality Dashboard</title>
   <style>
-    html, body { height: 100%; }
     body {
       background: #E8EDDA;
       margin: 0;
@@ -13,7 +12,6 @@
       color: #222;
     }
     .wrap {
-      max-width: 1600px;         /* wider so vizzes can be large */
       margin: 0 auto;
       padding: 20px;
       text-align: center;
@@ -24,29 +22,16 @@
       font-size: 0.95rem;
       line-height: 1.35;
     }
-
-    /* Two-column responsive layout */
-    .row {
-      display: flex;
-      gap: 32px;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: stretch;
-    }
     .viz {
-      flex: 1 1 700px;           /* aim ~700px width per viz on desktop */
-      min-width: 520px;          /* stack below this width */
+      margin: 24px auto;
+      width: 100%;
+      max-width: 1400px; /* optional: remove if you want full-bleed width */
     }
-
-    /* Make Tableau objects fill their containers */
-    .tableauPlaceholder,
-    .tableauViz {
-      width: 100% !important;
-      height: 100% !important;
-      display: block;
-      position: relative;
+    iframe {
+      width: 100%;
+      height: 900px;   /* fixed height so no JS is needed */
+      border: 0;
     }
-
     footer {
       margin-top: 20px;
       font-size: 0.8rem;
@@ -62,52 +47,24 @@
       Use the filters or buttons around the map to change what information is displayed. Click the home button on the map to recenter the results.
     </p>
 
-    <div class="row">
-      <!-- LEFT: Turbidity / DRP -->
-      <div class="viz">
-        <div class='tableauPlaceholder' id='viz1758637024424' style='position: relative'>
-          <noscript><a href='#'><img alt='Turbidity/DRP'
-            src='https://public.tableau.com/static/images/Tu/TurbidityDRP/TurbidityDRP/1_rss.png' style='border: none' /></a></noscript>
-          <object class='tableauViz' style='display:none;'>
-            <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
-            <param name='embed_code_version' value='3' />
-            <param name='site_root' value='' />
-            <param name='name' value='TurbidityDRP/TurbidityDRP' />
-            <param name='tabs' value='no' />
-            <param name='toolbar' value='yes' />
-            <param name='static_image' value='https://public.tableau.com/static/images/Tu/TurbidityDRP/TurbidityDRP/1.png' />
-            <param name='animate_transition' value='yes' />
-            <param name='display_static_image' value='yes' />
-            <param name='display_spinner' value='yes' />
-            <param name='display_overlay' value='yes' />
-            <param name='display_count' value='yes' />
-            <param name='language' value='en-US' />
-          </object>
-        </div>
-      </div>
+    <!-- Turbidity / DRP -->
+    <div class="viz">
+      <iframe
+        title="Turbidity / DRP"
+        src="https://public.tableau.com/views/TurbidityDRP/TurbidityDRP?:showVizHome=no&:embed=y&:toolbar=yes"
+        scrolling="no"
+        allowfullscreen>
+      </iframe>
+    </div>
 
-      <!-- RIGHT: Nitrate / E. coli -->
-      <div class="viz">
-        <div class='tableauPlaceholder' id='viz1758637057544' style='position: relative'>
-          <noscript><a href='#'><img alt='Nitrate/EColi'
-            src='https://public.tableau.com/static/images/Ni/NitrateEcoli/NitrateEColi/1_rss.png' style='border: none' /></a></noscript>
-          <object class='tableauViz' style='display:none;'>
-            <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
-            <param name='embed_code_version' value='3' />
-            <param name='site_root' value='' />
-            <param name='name' value='NitrateEcoli/NitrateEColi' />
-            <param name='tabs' value='no' />
-            <param name='toolbar' value='yes' />
-            <param name='static_image' value='https://public.tableau.com/static/images/Ni/NitrateEcoli/NitrateEColi/1.png' />
-            <param name='animate_transition' value='yes' />
-            <param name='display_static_image' value='yes' />
-            <param name='display_spinner' value='yes' />
-            <param name='display_overlay' value='yes' />
-            <param name='display_count' value='yes' />
-            <param name='language' value='en-US' />
-          </object>
-        </div>
-      </div>
+    <!-- Nitrate / E. coli -->
+    <div class="viz">
+      <iframe
+        title="Nitrate / E. coli"
+        src="https://public.tableau.com/views/NitrateEcoli/NitrateEColi?:showVizHome=no&:embed=y&:toolbar=yes"
+        scrolling="no"
+        allowfullscreen>
+      </iframe>
     </div>
 
     <p>
@@ -120,27 +77,5 @@
       This dashboard was last updated in September of 2025.
     </footer>
   </div>
-
-  <!-- Load Tableau API once -->
-  <script src="https://public.tableau.com/javascripts/api/viz_v1.js"></script>
-  <script>
-    // Size both vizzes generously; keep them tall even when narrow
-    function sizeViz(divId, aspect, minH) {
-      var div = document.getElementById(divId);
-      if (!div) return;
-      var obj = div.getElementsByTagName('object')[0];
-      function apply() {
-        var w = div.offsetWidth;
-        obj.style.width  = '100%';
-        obj.style.height = Math.max(minH, Math.round(w * aspect)) + 'px';
-      }
-      apply();
-      window.addEventListener('resize', apply);
-    }
-
-    // ~1000x827 aspect; at least 520px tall
-    sizeViz('viz1758637024424', 0.827, 520); // Turbidity/DRP
-    sizeViz('viz1758637057544', 0.827, 520); // Nitrate/E. coli
-  </script>
 </body>
 </html>
